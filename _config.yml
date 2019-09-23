@@ -1,1 +1,5 @@
 theme: jekyll-theme-minimal
+title: dstlr
+description: scaleable knowledge graph construction from unstructured text
+github:
+  is_project_page: false
