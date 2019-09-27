@@ -1,6 +1,6 @@
 ## What is dstlr?
 
-<a href="https://github.com/dstlry/dstlr"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+<a href="https://github.com/dstlry/dstlr"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" style="position: absolute; top: 0; right: 0; border: 0; z-index:9999;" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 
 `dstlr` is an open-source platform for scalable, end-to-end knowledge graph construction from unstructured text.
 The platform takes a collection of documents, extracts mentions and relations to populate a raw knowledge graph, links mentions to entities in Wikidata, and then enriches the knowledge graph with facts from Wikidata.
