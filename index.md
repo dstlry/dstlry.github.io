@@ -1,10 +1,20 @@
 ## What is dstlr?
 
-`dstlr` is a system for large-scale knowledge extraction using [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/), [Apache Spark](https://spark.apache.org/), and [neo4j](https://neo4j.com/). It takes a (potentially large) collection of unstructured text documents and horiztonally scales out CoreNLP via Spark to extract mentions of named entities, the relations between them, and links to an entity in an existing knowledge base. For relations of interest, we augment our extracted facts with corresponding ground-truth values from an existing knowledge base in order to reason about the quality of the text documents. From this, we generate a knowledge graph on which we can pose a number of queries via neo4j's Cypher query language to explore the text in a more structured manner.
+`dstlr` is an open-source platform for scalable, end-to-end knowledge graph construction from unstructured text.
+The platform takes a collection of documents, extracts mentions and relations to populate a raw knowledge graph, links mentions to entities in Wikidata, and then enriches the knowledge graph with facts from Wikidata.
 
-We can discover a number of different scenarios relating facts asserted in documents to facts present in the knowledge base:
-+ Supporting information - agreement between value in document and ground-truth from knowledge base
-+ Inconsistent information - disagreement between value in document and ground-truth from knowledge base
-+ Missing information - document contains information missing in knowledge base
+<img width="400px" src="architecture.png">
 
-In our system, we link mentions of entities to Wikidata entities.
+While there is plenty of work on relation extraction and complementary tasks such as entity linking, coreference resolution, predicate mapping, there is surprisingly no platform that integrates all the pieces together into a "minimal fuss" solution.
+`dstlr` takes advantage of mature open source components:
+
++ [Apache Solr](https://lucene.apache.org/solr/) as the document store to hold the source documents.
++ [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/) to extract mentions and relations, and to link mentions to entities in Wikidata.
++ [neo4j](https://neo4j.com/) to store the knowledge graph.
++ [Apache Spark](https://spark.apache.org/) to orchestrate all computations for horizontal scaling.
+
+On top of our platform, it is possible to build a number of applications, for example, to support business intelligence, knowledge discovery, and semantic search.
+As a very simple demo application, we have implemented a subgraph-matching approach to align extracted relations with facts from Wikidata using the declarative Cypher query language.
+This simple demo shows that fact verification, locating textual support for asserted facts, detecting inconsistent and missing facts, and extracting distantly-supervised training data can all be performed within the same framework.
+
+Give [`dstlr`](https://github.com/dstlry/dstlr) a try!
